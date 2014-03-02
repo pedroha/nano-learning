@@ -16,6 +16,13 @@
 				padding: 20px;
 			}
 
+			.code {
+				font-family: Courier;
+				background-color: black;
+				color: #0d0;
+				padding: 20px;
+			}
+
 		</style>
 	</head>
 
@@ -33,6 +40,8 @@
 			<div id="rnd"></div>
 			<div id="random"></div>
 
+			<div id="program" class="code"></div>
+
 		</div>
 
 		<script>
@@ -41,6 +50,7 @@
 			var $to = document.getElementById('to');
 			var $rnd = document.getElementById('rnd');
 			var $random = document.getElementById('random');
+			var $program = document.getElementById('program');
 
 			var $start = document.getElementById('start');
 
@@ -55,8 +65,17 @@
 						var range = to - from;
 						//var random = from + (rnd * range;
 						var random = from + Math.floor(rnd * range);
-						$rnd.textContent = "RND: " + rnd;
-						$random.textContent = "RANDOM: " + random;
+						$rnd.textContent = 'RND: ' + rnd;
+						$random.textContent = 'RANDOM: ' + random;
+
+						var program = [
+							'var from = ' + from + ';',
+							'var to = ' + to + ';',
+							'var rnd = ' + rnd + ';',
+							'var range = ' + range + ';',
+							'var random = ' + random + ';'
+						];
+						$program.innerHTML = program.join('<br/>');
 
 					}, 2000);
 				}
