@@ -36,9 +36,12 @@
 	<div id="game-panel" class="game panel hide">
 		<div id="trials"></div>
 
-		<div id="question">What's your guess?</div>
-		<input id="guess" type="text"></input>
-		<button id="guess-button">Guess</button>
+		<div>What's your guess?</div>
+
+		<form id="guess-form">
+			<input id="guess" type="text"></input>
+			<button id="guess-button">Guess</button>			
+		</form>
 		
 		<div id="feedback"></div>
 	</div>
@@ -64,6 +67,7 @@
 			var secret = parseInt(Math.random() * maximum);
 
 			var guessButton = document.getElementById('guess-button');
+			var guessForm = document.getElementById('guess-form');
 			var guess = document.getElementById('guess');
 			var feedback = document.getElementById('feedback');
 
@@ -71,7 +75,7 @@
 
 			showStats(trials);
 
-			guessButton.onclick = function() {
+			var processGuess = function() {
 				var guessNumber = parseInt(guess.value);
 
 				var message = '';
@@ -92,7 +96,13 @@
 
 				trials = trials + 1;				
 				showStats(trials);
-			}
+
+				return false; // override default form action: "submit"
+			};
+
+			guessButton.onclick = processGuess;
+
+			guessForm.onsubmit = processGuess;
 		}
 
 		var go = document.getElementById('go');		
