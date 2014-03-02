@@ -1,0 +1,73 @@
+<html>
+	
+	<head>
+		<title>Random Loops</title>
+		<style>
+
+			body {
+				font-family: HelveticaNeue-Light, Helvetica;
+				line-height: 2em;
+			}
+
+			.panel {
+				background-color: #ddd;
+				border-radius: 10px; 
+				margin: 10px;
+				padding: 20px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="panel">
+			<h1>Random Loops</h1>
+
+			Range.
+			From:<input id="from" type="text">
+			To:<input id="to" type="text">
+
+			<button id="start">Start</button>
+
+			<div id="rnd"></div>
+			<div id="random"></div>
+
+		</div>
+
+		<script>
+
+			var $from = document.getElementById('from');
+			var $to = document.getElementById('to');
+			var $rnd = document.getElementById('rnd');
+			var $random = document.getElementById('random');
+
+			var $start = document.getElementById('start');
+
+			$start.onclick = function() {
+
+				var from = parseInt($from.value);
+				var to = parseInt($to.value);
+
+				if (from && to) {
+					setInterval(function() {
+						var rnd = Math.random();
+						var range = to - from;
+						//var random = from + (rnd * range;
+						var random = from + Math.floor(rnd * range);
+						$rnd.textContent = "RND: " + rnd;
+						$random.textContent = "RANDOM: " + random;
+
+					}, 2000);
+				}
+				else {
+					alert("Invalid from and/or to parameters");
+				}
+			};
+
+
+		</script>
+		
+	</body>
+
+</html>
