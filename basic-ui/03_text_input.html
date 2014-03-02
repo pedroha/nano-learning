@@ -1,0 +1,30 @@
+<html>
+<body>
+	<p>
+		First Name:	
+		<input id="first-name" type="text"></input>		
+	</p>
+	<p>
+		Dessert:
+		<input id="dessert" type="text"></input>		
+	</p>
+
+	<button id="go">GO!</button>
+
+	<script>
+
+		var button = document.getElementById('go');
+
+		button.onclick = function() {
+			var firstName = document.getElementById('first-name');
+			var dessert = document.getElementById('dessert');
+
+			var message = firstName.value + " likes " + dessert.value + " a lot!!!";
+
+			alert(message);
+		};
+
+	</script>
+
+</body>
+</html>
