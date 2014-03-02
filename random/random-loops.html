@@ -54,13 +54,17 @@
 
 			var $start = document.getElementById('start');
 
+			var timer = null;
+
 			$start.onclick = function() {
+
+				clearInterval(timer);
 
 				var from = parseInt($from.value);
 				var to = parseInt($to.value);
 
 				if (from && to) {
-					setInterval(function() {
+					timer = setInterval(function() {
 						var rnd = Math.random();
 						var range = to - from;
 						//var random = from + (rnd * range;
