@@ -1,0 +1,38 @@
+<html>
+
+<head>
+	<style>
+
+		button {
+			font-size: 60px;
+		}
+
+	</style>
+	
+</head>
+<body>
+	
+	<button id="dhin">Dhin</button>
+	<button id="dhun">Dhun</button>
+	
+	<script>
+
+		// https://www.freesound.org/people/ajaysm/sounds/171904/
+		var dhinSound = new Audio("171904__ajaysm__dhin-stroke.wav");
+
+		var dhinButton = document.getElementById('dhin');
+		dhinButton.onclick = function() {
+			dhinSound.play();
+		};
+
+		// https://www.freesound.org/people/ajaysm/sounds/171903/
+		var dhunSound = new Audio("171902__ajaysm__ga-stroke.wav");
+
+		var dhunButton = document.getElementById('dhun');
+		dhunButton.onclick = function() {
+			dhunSound.play();
+		}
+
+	</script>
+</body>
+</html>
