@@ -1,0 +1,102 @@
+<html>
+
+<head>
+	<style>
+
+		button {
+			font-size: 60px;
+		}
+
+		button.play {
+			font-size: 20px;
+		}
+
+	</style>
+	
+</head>
+<body>
+	
+	<button id="laser">Laser</button>
+	<button id="glitch">Glitch</button>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+
+	<input id="laser-track" type="text" placeholder="101011" value="11001"/>
+	<input id="glitch-track" type="text" placeholder="011011" value="01011"/>
+
+	<button id="play-track" class="play">Play</button>
+	
+	<script>
+
+		var glitchSound = new Audio("223231__apewrist__glitch-035.wav");
+
+		// https://raw.githubusercontent.com/pedroha/nano-learning/master/play-sound/171904__ajaysm__dhin-stroke.wav
+		var glitchButton = document.getElementById('glitch');
+		glitchButton.onclick = function() {
+			glitchSound.play();
+		};
+
+		// Source: https://www.freesound.org/people/ajaysm/sounds/171903/
+		var laserSound = new Audio("30935__aust-paul__possiblelazer.wav");
+
+		var laserButton = document.getElementById('laser');
+		laserButton.onclick = function() {
+			laserSound.play();
+		};
+
+		var step = 0;
+
+		var playTrack = function(trackName, step) {
+			var play = function() {
+				if (trackName === "laser") {
+					laserSound.play();
+				}
+				else if (trackName === "glitch") {
+					glitchSound.play();
+				}
+				else {
+					alert("Track not found: " + trackName);
+				}
+			};
+			setTimeout(play, step * 1200); // step * 1.2 seconds (laser takes 1.2 secs)
+		};
+
+		var playAtTick = function(tick, track1, track2) {
+			var laserChar = track1.charAt(tick);
+			var glitchChar = track2.charAt(tick);
+
+			if (laserChar === '1') {
+				playTrack("laser", step);
+			}
+
+			if (glitchChar === '1') {
+				playTrack("glitch", step);
+			}
+
+			step = step + 1; // Increment timer for next note
+		};
+
+		var playTracks = function() {
+			var track1 = document.getElementById('laser-track').value;
+			var track2 = document.getElementById('glitch-track').value;
+
+			if (track1 && track1.length > 0 && track2 && track2.length > 0) {
+				step = 0;
+				var maxTicks = Math.max(track1.length, track2.length);
+				for (var i = 0; i < maxTicks; i++) {
+					playAtTick(i, track1, track2);
+				}
+			}
+		};
+
+		var play = document.getElementById('play-track');
+		play.onclick = function() {
+			playTracks();
+		};
+
+	</script>
+</body>
+</html>
